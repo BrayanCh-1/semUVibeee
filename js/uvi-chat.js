@@ -102,9 +102,9 @@
       `Frecuencia: ${e.frequency}`,
       `ADN: ${K.adn.list.map(a => `${a.id} (${a.about})`).join("; ")}.`,
       "Cómo funciona: " + K.howItWorks.map(s => `${s.step}. ${s.title}: ${s.detail}`).join(" "),
-      `Horas: ${h.note} Sin puntos: ${h.noPoints} Tope: ${h.cap} Parcial: ${h.partialWarning} Extra: ${h.whyMore}`,
+      `Horas: ${h.note} Sin puntos: ${h.noPoints} Tope: ${h.cap} Parcial: ${h.partialWarning} Extra: ${h.whyMore} Ponderación: ${h.weighting} Si no se hacen: ${h.noHours}`,
       `Obligatorio: ${K.mandatory.isRequired} ${K.mandatory.noClasses}`,
-      `Elegibilidad: ${el.general} Salud: ${el.healthPractices} Virtual: ${el.virtual} Posgrado: ${el.postgrad} Invitados: ${el.guests}`,
+      `Elegibilidad: ${el.general} Salud: ${el.healthPractices} Virtual: ${el.virtual} Posgrado: ${el.postgrad} Invitados: ${el.guests} Otro campus: ${el.crossCampus}`,
       `Inscripción: ${i.note} Cambios: ${i.changes} Cancelar: ${i.cancel} Múltiples: ${i.multiple} Cruces: ${i.overlap} Otras facultades: ${i.otherFaculty} Sin carrera: ${i.noCareerMatch} Sin cupos: ${i.noSeats} Sin mínimo: ${i.minNotMet} Congelado: ${i.noChangeAfterStart} Emergencia: ${i.emergency}`,
       `Modalidad: ${m.options} Enlaces: ${m.virtualLink} Tarde: ${m.late} Salidas: ${m.fieldTrips}`,
       `Campus: ${K.campus.logistics} Salitre: ${K.campus.salitreFood}`,
@@ -130,6 +130,9 @@
     elegVirtual: "Sí, puedes inscribirte en talleres presenciales, pero debes entregar tus tareas virtuales a tiempo.",
     elegPosgrado: "Es solo para pregrado. Posgrado y egresados pueden participar como facilitadores o ponentes.",
     elegInvitados: "No. Es exclusivo para la comunidad estudiantil, con credenciales institucionales.",
+    crossCampus: "Sí. Puedes inscribirte en actividades del campus que te quede más cómodo (Usulután o San Miguel), siempre que no choquen con tus clases. La oferta abierta de ambos campus está disponible para todos.",
+    ponderacion: "En este ciclo las horas NO tienen ponderación en tus materias. A partir de los próximos ciclos sí contarán con ponderación, así que aprovéchalas desde ya.",
+    sinHoras: "Más que una sanción, perderías grandes oportunidades: aprendizaje, networking con profesionales y estudiantes, y el fortalecimiento de habilidades clave para tu vida profesional. La Semana U-Vibe está pensada para que salgas ganando.",
     obligatorio: "Sí, la participación es requerida.",
     sinClases: "No. Esa semana no hay clases ni evaluaciones regulares.",
     horas: "Debes completar 16 horas combinando actividades de 4, 8 o 16 horas. El sistema no permite inscribir más de 16.",
@@ -213,9 +216,21 @@
       return R.elegGeneral;
     }
 
+        /* Cross-campus: vivir en un campus y estudiar en otro */
+    if (/(vivo|resido|soy de)\b.*(usulut|san miguel)/.test(q) && /(estudio|voy|pertenezco)\b.*(usulut|san miguel)/.test(q)) {
+      return R.crossCampus;
+    }
+    if (/(usulut|san miguel).*(san miguel|usulut)/.test(q) && /(puedo|podre|hay|inscrib|hacer las horas|asistir)/.test(q)) {
+      return R.crossCampus;
+    }
+
     /* Obligatorio / clases */
     if (/obligatorio|debo participar|es requerido|es necesaria/.test(q)) return R.obligatorio;
     if (/clases normales|evaluaciones|habra clases|hay clases/.test(q)) return R.sinClases;
+
+    if (/ponderacion|pondera|cuenta para|suma a mis notas|peso en la nota|porcentaje/.test(q)) return R.ponderacion;
+    if (/si no hago|si no cumplo|que pasa si no|no completo las horas|no hago las horas|no hago las 16/.test(q)) return R.sinHoras;
+
 
     /* Horas */
     if (/cuantas horas|16 hora|acumul|cumplir|completar|duracion|horas requeridas/.test(q)) return R.horas;
