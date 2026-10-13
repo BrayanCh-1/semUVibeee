@@ -54,7 +54,11 @@ const UVI_KNOWLEDGE = {
       "Completar las 16 horas es indispensable. Si no alcanzas, debes notificarlo a tu docente guía. Verifica tu carga horaria antes del inicio.",
     whyMore:
       "Algunas actividades acreditan más horas que el horario de clase porque se toma en cuenta el nivel de exigencia, complejidad o trabajo autónomo fuera del horario lectivo.",
-    cap: "El sistema está configurado para que inscribas exactamente 16 horas, garantizando acceso equitativo a los cupos. Una vez alcanzadas, no podrás añadir más."
+    cap: "El sistema está configurado para que inscribas exactamente 16 horas, garantizando acceso equitativo a los cupos. Una vez alcanzadas, no podrás añadir más.",
+        weighting:
+      "En este ciclo las horas de U-Vibe NO tienen ponderación en tus materias. Sin embargo, a partir de los próximos ciclos sí contarán con ponderación, así que es buena idea tomarle la importancia desde ahora y aprovechar al máximo la experiencia.",
+    noHours:
+      "Si no completas las horas, más que una sanción perderías grandes oportunidades: aprendizaje real, networking con profesionales y estudiantes de otras carreras, y el fortalecimiento de habilidades que te van a servir en tu vida profesional. La Semana U-Vibe está pensada para que salgas ganando."
   },
 
   mandatory: {
@@ -73,7 +77,9 @@ const UVI_KNOWLEDGE = {
     postgrad:
       "Las Semanas U-Vibe están diseñadas exclusivamente para estudiantes activos de pregrado. Si eres de posgrado o egresado, pueden invitarte como facilitador o ponente.",
     guests:
-      "Los talleres son de uso exclusivo para la comunidad estudiantil. Debes ingresar con tus credenciales institucionales."
+      "Los talleres son de uso exclusivo para la comunidad estudiantil. Debes ingresar con tus credenciales institucionales.",
+    crossCampus:
+    "Sí, puedes hacerlo. Si vives en Usulután y estudias en San Miguel (o al revés), puedes inscribirte en actividades del campus que te quede más cómodo, siempre que no choquen con tus clases. La oferta abierta de ambos campus está disponible para todos los estudiantes."
   },
 
   inscription: {
